@@ -42,25 +42,16 @@ Write-Host "Création des entrées dans le registre."
 [void](New-ItemProperty -Path $directoryContextMenu -Name ExtendedSubCommandsKey -PropertyType String -Value $subMenuRelativePath)
 [void](New-ItemProperty -Path $directoryContextMenu -Name Icon -PropertyType String -Value "$imagesLocation\terminal.ico")
 [void](New-ItemProperty -Path $directoryContextMenu -Name MUIVerb -PropertyType String -Value $ContextMenuLabel)
-if ($config.global.extended) {
-    [void](New-ItemProperty -Path $directoryContextMenu -Name Extended -PropertyType String)
-}
 
 [void](New-Item -Path $backgroundContextMenu)
 [void](New-ItemProperty -Path $backgroundContextMenu -Name ExtendedSubCommandsKey -PropertyType String -Value $subMenuRelativePath)
 [void](New-ItemProperty -Path $backgroundContextMenu -Name Icon -PropertyType String -Value "$imagesLocation\terminal.ico")
 [void](New-ItemProperty -Path $backgroundContextMenu -Name MUIVerb -PropertyType String -Value $ContextMenuLabel)
-if ($config.global.extended) {
-    [void](New-ItemProperty -Path $backgroundContextMenu -Name Extended -PropertyType String)
-}
 
 [void](New-Item -Path $driveContextMenu)
 [void](New-ItemProperty -Path $driveContextMenu -Name ExtendedSubCommandsKey -PropertyType String -Value $subMenuRelativePath)
 [void](New-ItemProperty -Path $driveContextMenu -Name Icon -PropertyType String -Value "$imagesLocation\terminal.ico")
 [void](New-ItemProperty -Path $driveContextMenu -Name MUIVerb -PropertyType String -Value $ContextMenuLabel)
-if ($config.global.extended) {
-    [void](New-ItemProperty -Path $directorydr  ContextMenu -Name Extended -PropertyType String)
-}
 
 Write-Host "Récupération des profils de Windows Terminal"
 
@@ -76,18 +67,12 @@ $profiles | ForEach-Object {
 
     $profilePath = "$subMenuPath\$guid"
 
-
     if (!$_.hidden) {
         [void](New-Item -Force -Path $profilePath)
         [void](New-Item -Force -Path "$profilePath\command")
 
         if (!$null -eq $source) {
             switch ($source) {
-                "Windows.Terminal.PowershellCore" {
-                    Copy-Item -Path "$PSScriptRoot\assets\icons\powershell-core.ico" -Destination "$imagesLocation\powershell-core.ico"
-
-                    $iconPath = "$imagesLocation\powershell-core.ico"
-                }
                 "Windows.Terminal.Wsl" {
                     Copy-Item -Path "$PSScriptRoot\assets\icons\wsl.ico" -Destination "$imagesLocation/wsl.ico"
                     
@@ -107,14 +92,10 @@ $profiles | ForEach-Object {
         if (!$null -eq $commandline) {
             switch ($commandLine) {
                 "cmd.exe" {
-                    Copy-Item -Path "$PSScriptRoot\assets\icons\cmd.ico" -Destination "$imagesLocation\cmd.ico"
-
-                    $iconPath = "$imagesLocation\cmd.ico"
+                    $iconPath = (Get-Command cmd.exe).Definition
                 }
                 "powershell.exe" {
-                    Copy-Item -Path "$PSScriptRoot\assets\icons\powershell.ico" -Destination "$imagesLocation\powershell.ico"
-
-                    $iconPath = "$imagesLocation\powershell.ico"
+                    $iconPath = (Get-Command powershell.exe).Definition
                 }
             }
         }
