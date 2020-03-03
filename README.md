@@ -5,8 +5,9 @@ Powershell script allowing to add in the context menu an entry "**Open a Windows
 ## Feature
 
 - Parse Windows Terminal profiles.json to add your profiles in the context menu.
+- Integrated uninstaller (use -Uninstall argument)
 
-# Prerequirements
+## Prerequirements
 
 * [PowerShell configuration for script execution](https://go.microsoft.com/fwlink/?LinkID=135170)
 
@@ -21,3 +22,4 @@ Powershell script allowing to add in the context menu an entry "**Open a Windows
 Argument|Type|Default value
 ---|---|---
 ContextMenuLabel|string|Ouvrir un profil Windows Terminal ici
+Uninstall|bool|$false

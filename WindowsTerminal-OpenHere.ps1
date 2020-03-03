@@ -1,5 +1,6 @@
 Param (
-    [string]$ContextMenuLabel = "Ouvrir un profil Windows Terminal ici"
+    [string]$ContextMenuLabel = "Ouvrir un profil Windows Terminal ici",
+    [bool]$Uninstall = $false
 )
 
 $directoryContextMenu = "Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\Directory\shell\WindowsTerminal"
@@ -32,6 +33,10 @@ if (Test-Path -Path $driveContextMenu) {
 
 if (Test-Path -Path $subMenuRootPath) {
     Remove-Item -Recurse -Force -Path $subMenuRootPath
+}
+
+if ($Uninstall) {
+    break;
 }
 
 Write-Host "Récupération des images sur le repository Github Microsoft Terminal"
