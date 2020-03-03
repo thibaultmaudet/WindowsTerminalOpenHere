@@ -2,6 +2,8 @@
 
 Powershell script allowing to add in the context menu an entry "**Open a Windows Terminal profil here**".
 
+![Windows Terminal Context Menu](/assets/ContextMenu.png)
+
 ## Feature
 
 - Parse Windows Terminal profiles.json to add your profiles in the context menu.
