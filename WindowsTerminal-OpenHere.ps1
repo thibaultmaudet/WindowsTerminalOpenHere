@@ -42,17 +42,17 @@ Write-Host "Récupération des images sur le repository Github Microsoft Termina
 (New-Object System.Net.WebClient).DownloadFile("https://github.com/microsoft/terminal/raw/master/res/terminal.ico", "$imagesLocation\terminal.ico")
 
 Write-Host "Création des entrées dans le registre."
-[void](New-Item -Path $directoryContextMenu)
+[void](New-Item -Path $directoryContextMenu -Force)
 [void](New-ItemProperty -Path $directoryContextMenu -Name ExtendedSubCommandsKey -PropertyType String -Value $subMenuRelativePath)
 [void](New-ItemProperty -Path $directoryContextMenu -Name Icon -PropertyType String -Value "$imagesLocation\terminal.ico")
 [void](New-ItemProperty -Path $directoryContextMenu -Name MUIVerb -PropertyType String -Value $ContextMenuLabel)
 
-[void](New-Item -Path $backgroundContextMenu)
+[void](New-Item -Path $backgroundContextMenu -Force)
 [void](New-ItemProperty -Path $backgroundContextMenu -Name ExtendedSubCommandsKey -PropertyType String -Value $subMenuRelativePath)
 [void](New-ItemProperty -Path $backgroundContextMenu -Name Icon -PropertyType String -Value "$imagesLocation\terminal.ico")
 [void](New-ItemProperty -Path $backgroundContextMenu -Name MUIVerb -PropertyType String -Value $ContextMenuLabel)
 
-[void](New-Item -Path $driveContextMenu)
+[void](New-Item -Path $driveContextMenu -Force)
 [void](New-ItemProperty -Path $driveContextMenu -Name ExtendedSubCommandsKey -PropertyType String -Value $subMenuRelativePath)
 [void](New-ItemProperty -Path $driveContextMenu -Name Icon -PropertyType String -Value "$imagesLocation\terminal.ico")
 [void](New-ItemProperty -Path $driveContextMenu -Name MUIVerb -PropertyType String -Value $ContextMenuLabel)
