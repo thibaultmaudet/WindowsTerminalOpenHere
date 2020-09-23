@@ -59,7 +59,7 @@ Write-Host "Création des entrées dans le registre."
 
 Write-Host "Récupération des profils de Windows Terminal"
 
-$content = (Get-Content "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\profiles.json") -replace '^\s*\/\/.*' | Out-String
+$content = (Get-Content "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json") -replace '^\s*\/\/.*' | Out-String
 $profiles = (ConvertFrom-Json -InputObject $content).profiles.list
 
 $profiles | ForEach-Object {

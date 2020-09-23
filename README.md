@@ -6,7 +6,7 @@ Powershell script allowing to add in the context menu an entry "**Open a Windows
 
 ## Feature
 
-- Parse Windows Terminal profiles.json to add your profiles in the context menu.
+- Parse Windows Terminal settings.json to add your profiles in the context menu.
 - Integrated uninstaller (use -Uninstall argument)
 
 ## Prerequirements
