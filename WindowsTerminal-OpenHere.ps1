@@ -11,8 +11,7 @@ $subMenuRootPath = "Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\Directory\Conte
 $subMenuPath = "$subMenuRootPath\WindowsTerminal\shell"
 $imagesLocation = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\RoamingState"
 
-$wtPath = Get-Command "C:\Program Files\WindowsApps\Microsoft.WindowsTerminal*\WindowsTerminal.exe" -ea 0 | Select-Object -ExpandProperty Source
-if ($null -eq $wtPath) {
+if (!(Test-Path -Path $env:LOCALAPPDATA\Microsoft\WindowsApps\wt.exe)) {
     Write-Host "Impossible de trouver Windows Terminal. Veuillez installer Windows Terminal avant de réessayer."
     return
 }
@@ -36,7 +35,7 @@ if (Test-Path -Path $subMenuRootPath) {
 }
 
 if ($Uninstall) {
-    break;
+    return;
 }
 
 Write-Host "Récupération des images sur le repository Github Microsoft Terminal"
